@@ -7,459 +7,433 @@
   <meta name="description" content="Plombier à Bordeaux et Gironde 33. Dépannage et installation 7J/7, 24H/24. Devis gratuit.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --font-display: 'Instrument Serif', Georgia, serif;
-      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --sans: 'Space Grotesk', system-ui, sans-serif;
+      --body: 'DM Sans', -apple-system, sans-serif;
 
-      --ink: #1a1612;
-      --ink-soft: #5c554d;
-      --ink-muted: #8a8279;
-      --paper: #faf8f5;
-      --paper-warm: #f3efe9;
-      --paper-deep: #ebe5dc;
-      --cream: #ffffff;
-      --terracotta: #c4592a;
-      --terracotta-dark: #a3441e;
-      --forest: #2d5a3d;
-      --forest-light: #e8f0eb;
-      --sand: #d4c5a9;
-      --border: #e0dbd3;
-      --border-light: #ece8e1;
+      --bg: #0c0c0c;
+      --bg-raised: #161616;
+      --bg-card: #1c1c1c;
+      --bg-hover: #222222;
+      --surface: #2a2a2a;
 
-      --space-xs: 4px;
-      --space-sm: 8px;
-      --space-md: 16px;
-      --space-lg: 24px;
-      --space-xl: 40px;
-      --space-2xl: 64px;
-      --space-3xl: 96px;
-      --space-4xl: 128px;
+      --text: #f0ece4;
+      --text-2: #a8a29e;
+      --text-3: #78716c;
+
+      --accent: #d4a853;
+      --accent-dim: rgba(212,168,83,0.12);
+      --accent-hover: #e0b96a;
+
+      --danger: #e74c3c;
+      --ok: #2ecc71;
+
+      --border: #2a2a2a;
+      --border-light: #333;
+
+      --r-sm: 6px;
+      --r-md: 10px;
+      --r-lg: 16px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-body);
-      color: var(--ink);
-      background: var(--paper);
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
     /* ===== NAV ===== */
     .nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: var(--paper);
+      background: rgba(12,12,12,0.85);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
       transition: box-shadow 0.3s;
     }
-    .nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.04); }
+    .nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
     .nav-row {
-      max-width: 1200px; margin: 0 auto;
-      padding: 0 var(--space-lg);
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
       display: flex; align-items: center; justify-content: space-between;
-      height: 60px;
+      height: 56px;
     }
     .nav-brand {
-      font-family: var(--font-display);
-      font-size: 22px; color: var(--ink);
-      text-decoration: none; letter-spacing: -0.3px;
+      font-family: var(--sans); font-size: 16px; font-weight: 700;
+      letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px;
     }
-    .nav-brand span { color: var(--terracotta); }
-    .nav-links { display: flex; align-items: center; gap: var(--space-xl); list-style: none; }
+    .nav-brand .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
     .nav-links a {
-      font-size: 14px; font-weight: 500; color: var(--ink-soft);
-      text-decoration: none; transition: color 0.15s;
+      font-size: 13px; font-weight: 500; color: var(--text-3);
+      transition: color 0.15s; letter-spacing: 0.2px;
     }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-links .active {
-      color: var(--ink); font-weight: 600;
-      text-decoration: underline; text-underline-offset: 4px;
-      text-decoration-thickness: 1.5px;
+    .nav-links a:hover { color: var(--text); }
+    .nav-phone {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; background: var(--accent);
+      color: var(--bg); font-family: var(--sans);
+      font-size: 13px; font-weight: 600; border-radius: var(--r-sm);
+      transition: background 0.15s;
     }
-    .nav-btn {
-      display: inline-flex; align-items: center; gap: var(--space-sm);
-      padding: 10px 20px; background: var(--ink); color: var(--cream);
-      font-family: var(--font-body); font-size: 13px; font-weight: 600;
-      text-decoration: none; border-radius: 6px; transition: background 0.15s;
-    }
-    .nav-btn:hover { background: var(--terracotta); }
-    .nav-btn svg { width: 14px; height: 14px; }
+    .nav-phone:hover { background: var(--accent-hover); }
+    .nav-phone svg { width: 14px; height: 14px; }
 
     .nav-mob { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-    .nav-mob span { display: block; width: 20px; height: 1.5px; background: var(--ink); margin: 5px 0; }
+    .nav-mob span { display: block; width: 18px; height: 1.5px; background: var(--text); margin: 4px 0; }
 
     /* ===== HERO ===== */
     .hero {
-      padding: calc(60px + var(--space-4xl)) var(--space-lg) var(--space-3xl);
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3xl);
-      align-items: center;
+      min-height: 100vh; display: flex; align-items: flex-end;
+      padding-bottom: 80px; position: relative;
+      background: var(--bg);
     }
-    .hero-text { max-width: 520px; }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: var(--space-sm);
-      font-size: 12px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 1.5px; color: var(--terracotta);
-      margin-bottom: var(--space-lg);
+    /* Subtle grain texture */
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
     }
-    .hero-tag::before {
-      content: ''; width: 24px; height: 1px; background: var(--terracotta);
+    /* Accent line */
+    .hero::after {
+      content: ''; position: absolute; top: 0; left: 24px;
+      width: 1px; height: 100vh;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+      opacity: 0.2;
+    }
+    .hero-inner { position: relative; z-index: 2; }
+    .hero-eyebrow {
+      font-family: var(--sans); font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--accent); margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+      max-width: 120px;
     }
     .hero h1 {
-      font-family: var(--font-display);
-      font-size: clamp(42px, 5.5vw, 72px);
-      font-weight: 400; line-height: 1.05; letter-spacing: -1px;
-      color: var(--ink); margin-bottom: var(--space-lg);
+      font-family: var(--sans); font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700; line-height: 0.95; letter-spacing: -2px;
+      color: var(--text); margin-bottom: 32px;
+      max-width: 800px;
     }
-    .hero h1 em {
-      font-style: italic; color: var(--terracotta);
+    .hero h1 .gold { color: var(--accent); }
+    .hero-sub {
+      font-size: 17px; color: var(--text-2);
+      max-width: 480px; line-height: 1.7; margin-bottom: 40px;
     }
-    .hero-desc {
-      font-size: 17px; color: var(--ink-soft);
-      line-height: 1.75; margin-bottom: var(--space-xl);
-      max-width: 440px;
-    }
-    .hero-actions { display: flex; gap: var(--space-md); align-items: center; }
+    .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
-    .btn-primary {
-      display: inline-flex; align-items: center; gap: var(--space-sm);
-      padding: 16px 32px; background: var(--ink); color: var(--cream);
-      font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      text-decoration: none; border-radius: 8px; border: none; cursor: pointer;
-      transition: all 0.2s;
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 28px; background: var(--accent); color: var(--bg);
+      font-family: var(--sans); font-size: 14px; font-weight: 600;
+      border-radius: var(--r-sm); border: none; cursor: pointer;
+      transition: all 0.15s;
     }
-    .btn-primary:hover { background: var(--terracotta); }
-    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-gold:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .btn-gold svg { width: 16px; height: 16px; }
 
     .btn-ghost {
-      display: inline-flex; align-items: center; gap: var(--space-sm);
-      padding: 16px 28px; background: transparent; color: var(--ink);
-      font-family: var(--font-body); font-size: 15px; font-weight: 500;
-      text-decoration: none; border: 1.5px solid var(--border);
-      border-radius: 8px; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 24px; background: transparent; color: var(--text);
+      font-family: var(--sans); font-size: 14px; font-weight: 500;
+      border: 1px solid var(--border-light); border-radius: var(--r-sm);
+      cursor: pointer; transition: all 0.15s;
     }
-    .btn-ghost:hover { border-color: var(--ink); }
+    .btn-ghost:hover { border-color: var(--text-3); }
     .btn-ghost svg { width: 16px; height: 16px; }
 
-    .hero-visual {
-      position: relative; aspect-ratio: 4/5; border-radius: 12px;
-      overflow: hidden; background: var(--paper-deep);
+    /* Hero right side: stats strip */
+    .hero-stats {
+      position: absolute; right: 0; bottom: 80px;
+      display: flex; flex-direction: column; gap: 0;
+      border-left: 1px solid var(--border);
     }
-    .hero-img {
-      width: 100%; height: 100%; object-fit: cover;
-      display: block;
+    .hero-stat {
+      padding: 20px 32px; border-bottom: 1px solid var(--border);
     }
-    /* SVG illustration as hero visual */
-    .hero-illustration {
-      width: 100%; height: 100%; display: flex;
-      align-items: center; justify-content: center;
-      background: var(--paper-deep); position: relative;
+    .hero-stat-num {
+      font-family: var(--sans); font-size: 28px; font-weight: 700;
+      color: var(--accent); letter-spacing: -0.5px; line-height: 1;
     }
-    .hero-illustration svg { width: 65%; height: auto; opacity: 0.9; }
-
-    .hero-badge-float {
-      position: absolute; bottom: var(--space-lg); left: var(--space-lg);
-      right: var(--space-lg); padding: var(--space-md) var(--space-lg);
-      background: var(--cream); border-radius: 10px;
-      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .hbf-left { display: flex; align-items: center; gap: var(--space-md); }
-    .hbf-icon {
-      width: 40px; height: 40px; border-radius: 8px;
-      background: var(--forest-light); color: var(--forest);
-      display: grid; place-items: center;
-    }
-    .hbf-icon svg { width: 18px; height: 18px; }
-    .hbf-label { font-size: 11px; color: var(--ink-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
-    .hbf-value { font-size: 14px; font-weight: 600; color: var(--ink); }
-    .hbf-status {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--forest); flex-shrink: 0;
-      box-shadow: 0 0 0 3px rgba(45,90,61,0.15);
+    .hero-stat-label {
+      font-size: 12px; color: var(--text-3); margin-top: 4px;
+      text-transform: uppercase; letter-spacing: 0.5px;
     }
 
-    /* ===== MARQUEE STRIP ===== */
+    /* ===== MARQUEE ===== */
     .marquee {
-      background: var(--ink); color: var(--paper);
-      padding: var(--space-md) 0; overflow: hidden;
-      white-space: nowrap;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0; overflow: hidden;
     }
     .marquee-track {
-      display: flex; gap: var(--space-xl);
-      animation: scroll 25s linear infinite;
+      display: flex; gap: 48px;
+      animation: scroll 30s linear infinite;
+      white-space: nowrap;
     }
     .marquee-item {
-      font-size: 13px; font-weight: 500; letter-spacing: 0.5px;
-      display: flex; align-items: center; gap: var(--space-sm);
-      flex-shrink: 0;
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      color: var(--text-3); text-transform: uppercase; letter-spacing: 1px;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
     }
     .marquee-item::before {
       content: ''; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--terracotta);
+      background: var(--accent);
     }
-    @keyframes scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    /* ===== SECTION DEFAULTS ===== */
-    .section { padding: var(--space-3xl) var(--space-lg); }
-    .section-inner { max-width: 1200px; margin: 0 auto; }
-    .section-label {
-      font-size: 11px; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 2px; color: var(--terracotta);
-      margin-bottom: var(--space-md);
+    /* ===== SECTION ===== */
+    .sec { padding: 120px 0; }
+    .sec-label {
+      font-family: var(--sans); font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 3px;
+      color: var(--accent); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
     }
-    .section-heading {
-      font-family: var(--font-display);
-      font-size: clamp(32px, 4vw, 52px);
-      font-weight: 400; line-height: 1.1; letter-spacing: -0.5px;
-      color: var(--ink); margin-bottom: var(--space-md);
+    .sec-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+      max-width: 80px;
     }
-    .section-sub {
-      font-size: 16px; color: var(--ink-soft);
-      line-height: 1.7; max-width: 520px;
+    .sec-title {
+      font-family: var(--sans); font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+      color: var(--text); margin-bottom: 16px;
+    }
+    .sec-desc {
+      font-size: 16px; color: var(--text-2); max-width: 480px;
+      line-height: 1.7;
     }
 
     /* ===== SERVICES ===== */
     .svc-grid {
       display: grid; grid-template-columns: repeat(3, 1fr);
       gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: 12px;
-      overflow: hidden; margin-top: var(--space-xl);
+      border: 1px solid var(--border); border-radius: var(--r-md);
+      overflow: hidden; margin-top: 48px;
     }
-    .svc-cell {
-      background: var(--cream); padding: var(--space-xl);
-      display: flex; flex-direction: column; gap: var(--space-md);
-      transition: background 0.2s;
+    .svc {
+      background: var(--bg-raised); padding: 36px 32px;
+      display: flex; flex-direction: column; gap: 16px;
+      transition: background 0.15s; position: relative;
     }
-    .svc-cell:hover { background: var(--paper); }
+    .svc:hover { background: var(--bg-card); }
+    .svc::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 2px; background: var(--accent);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .svc:hover::before { transform: scaleX(1); }
     .svc-num {
-      font-size: 11px; font-weight: 700; color: var(--ink-muted);
-      font-variant-numeric: tabular-nums;
+      font-family: var(--sans); font-size: 11px; font-weight: 700;
+      color: var(--text-3); font-variant-numeric: tabular-nums;
     }
-    .svc-cell h3 {
-      font-family: var(--font-display);
-      font-size: 22px; font-weight: 400; line-height: 1.2;
-      color: var(--ink);
+    .svc h3 {
+      font-family: var(--sans); font-size: 18px; font-weight: 600;
+      color: var(--text); line-height: 1.3; letter-spacing: -0.2px;
     }
-    .svc-cell p {
-      font-size: 14px; color: var(--ink-soft); line-height: 1.65;
+    .svc p {
+      font-size: 14px; color: var(--text-3); line-height: 1.65;
     }
-    .svc-link {
-      margin-top: auto; padding-top: var(--space-md);
-      border-top: 1px solid var(--border-light);
-      font-size: 13px; font-weight: 600; color: var(--terracotta);
-      text-decoration: none; display: inline-flex; align-items: center;
-      gap: var(--space-sm); transition: gap 0.2s;
-    }
-    .svc-link:hover { gap: var(--space-md); }
-    .svc-link svg { width: 14px; height: 14px; }
-
-    /* ===== ABOUT / TEXT BLOCK ===== */
-    .about {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--space-3xl); align-items: start;
-    }
-    .about-text {
-      font-size: clamp(24px, 3vw, 36px);
-      font-family: var(--font-display);
-      line-height: 1.35; color: var(--ink);
-      letter-spacing: -0.3px;
-    }
-    .about-text .accent { color: var(--terracotta); }
-    .about-meta {
-      padding-top: var(--space-xl);
+    .svc-cta {
+      margin-top: auto; padding-top: 16px;
       border-top: 1px solid var(--border);
+      font-family: var(--sans); font-size: 12px; font-weight: 600;
+      color: var(--accent); display: inline-flex; align-items: center;
+      gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+      transition: gap 0.2s;
     }
-    .about-meta p {
-      font-size: 15px; color: var(--ink-soft); line-height: 1.75;
-      margin-bottom: var(--space-lg);
+    .svc-cta:hover { gap: 14px; }
+    .svc-cta svg { width: 14px; height: 14px; }
+
+    /* ===== ABOUT STRIP ===== */
+    .about {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
     }
-    .about-stats { display: flex; gap: var(--space-xl); }
-    .about-stat-num {
-      font-family: var(--font-display);
-      font-size: 36px; color: var(--ink); line-height: 1;
-      margin-bottom: 4px;
+    .about-cell {
+      padding: 48px 40px;
+      border-right: 1px solid var(--border);
     }
-    .about-stat-label {
-      font-size: 12px; color: var(--ink-muted);
-      text-transform: uppercase; letter-spacing: 0.5px;
+    .about-cell:last-child { border-right: none; }
+    .about-cell-num {
+      font-family: var(--sans); font-size: 48px; font-weight: 700;
+      color: var(--accent); letter-spacing: -1px; line-height: 1;
+      margin-bottom: 8px;
+    }
+    .about-cell-title {
+      font-family: var(--sans); font-size: 15px; font-weight: 600;
+      color: var(--text); margin-bottom: 8px;
+    }
+    .about-cell p {
+      font-size: 14px; color: var(--text-3); line-height: 1.65;
     }
 
-    /* ===== CTA BAND ===== */
-    .cta-band {
-      background: var(--ink); color: var(--paper);
-      padding: var(--space-3xl) var(--space-lg);
+    /* ===== CTA ===== */
+    .cta {
+      background: var(--bg-raised);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 100px 0;
     }
     .cta-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr auto; gap: var(--space-xl);
+      display: grid; grid-template-columns: 1fr auto; gap: 48px;
       align-items: center;
     }
-    .cta-inner h2 {
-      font-family: var(--font-display);
-      font-size: clamp(28px, 3.5vw, 44px);
-      font-weight: 400; line-height: 1.15;
-      color: var(--paper); max-width: 500px;
+    .cta h2 {
+      font-family: var(--sans); font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700; line-height: 1.1; letter-spacing: -1px;
+      max-width: 520px;
     }
-    .cta-inner h2 em { font-style: italic; color: var(--terracotta); }
-    .cta-btns { display: flex; gap: var(--space-md); }
-    .btn-warm {
-      display: inline-flex; align-items: center; gap: var(--space-sm);
-      padding: 16px 32px; background: var(--terracotta); color: var(--cream);
-      font-family: var(--font-body); font-size: 15px; font-weight: 600;
-      text-decoration: none; border-radius: 8px; border: none; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-warm:hover { background: var(--terracotta-dark); }
-    .btn-warm svg { width: 16px; height: 16px; }
-    .btn-outline-w {
-      display: inline-flex; align-items: center; gap: var(--space-sm);
-      padding: 16px 28px; background: transparent; color: var(--paper);
-      font-family: var(--font-body); font-size: 15px; font-weight: 500;
-      text-decoration: none; border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 8px; transition: border-color 0.2s;
-    }
-    .btn-outline-w:hover { border-color: rgba(255,255,255,0.5); }
+    .cta h2 .gold { color: var(--accent); }
 
     /* ===== AREAS ===== */
     .area-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: var(--space-sm); margin-top: var(--space-xl);
+      gap: 8px; margin-top: 48px;
     }
-    .area-item {
-      display: flex; align-items: center; gap: var(--space-md);
-      padding: var(--space-md) var(--space-lg);
-      background: var(--cream); border: 1px solid var(--border);
-      border-radius: 8px; font-size: 14px; font-weight: 500;
-      color: var(--ink); transition: all 0.15s; text-decoration: none;
+    .area {
+      display: flex; align-items: center; gap: 12px;
+      padding: 14px 20px; background: var(--bg-raised);
+      border: 1px solid var(--border); border-radius: var(--r-sm);
+      font-size: 14px; font-weight: 500; color: var(--text-2);
+      transition: all 0.15s;
     }
-    .area-item:hover { border-color: var(--ink); }
-    .area-item svg { width: 14px; height: 14px; color: var(--ink-muted); flex-shrink: 0; }
+    .area:hover { border-color: var(--accent); color: var(--text); }
+    .area svg { width: 12px; height: 12px; color: var(--accent); flex-shrink: 0; }
     .area-all {
-      margin-top: var(--space-lg); padding: var(--space-lg);
-      background: var(--forest-light); border-radius: 10px;
-      font-size: 15px; font-weight: 600; color: var(--forest);
-      text-align: center;
+      margin-top: 24px; padding: 20px;
+      background: var(--accent-dim); border: 1px solid rgba(212,168,83,0.2);
+      border-radius: var(--r-md);
+      font-family: var(--sans); font-size: 14px; font-weight: 600;
+      color: var(--accent); text-align: center;
     }
 
     /* ===== TIPS ===== */
-    .tips-grid {
+    .tips-split {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--space-2xl); margin-top: var(--space-xl);
+      gap: 64px; margin-top: 48px; align-items: start;
     }
-    .tips-text {
-      font-size: clamp(22px, 2.5vw, 32px);
-      font-family: var(--font-display);
-      line-height: 1.35; color: var(--ink);
+    .tips-quote {
+      font-family: var(--sans); font-size: clamp(22px, 2.5vw, 32px);
+      font-weight: 600; line-height: 1.35; color: var(--text);
+      letter-spacing: -0.3px;
     }
-    .tips-list { display: flex; flex-direction: column; gap: 0; }
-    .tip-row {
-      padding: var(--space-lg) 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; gap: var(--space-md); align-items: flex-start;
+    .tips-quote .gold { color: var(--accent); }
+    .tips-list { display: flex; flex-direction: column; }
+    .tip {
+      padding: 20px 0; border-bottom: 1px solid var(--border);
+      display: flex; gap: 16px;
     }
-    .tip-row:first-child { border-top: 1px solid var(--border); }
-    .tip-num {
-      font-size: 12px; font-weight: 700; color: var(--terracotta);
-      flex-shrink: 0; padding-top: 2px;
+    .tip:first-child { border-top: 1px solid var(--border); }
+    .tip-n {
+      font-family: var(--sans); font-size: 12px; font-weight: 700;
+      color: var(--accent); flex-shrink: 0; padding-top: 2px;
     }
-    .tip-body { font-size: 15px; color: var(--ink-soft); line-height: 1.6; }
-    .tip-body strong { color: var(--ink); font-weight: 600; }
+    .tip-body { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+    .tip-body strong { color: var(--text); font-weight: 600; }
 
     /* ===== CONTACT ===== */
-    .contact-layout {
+    .contact-grid {
       display: grid; grid-template-columns: 1fr 1fr;
-      gap: var(--space-2xl);
+      gap: 48px; margin-top: 48px;
     }
-    .contact-cards { display: flex; flex-direction: column; gap: var(--space-md); }
+    .contact-cards { display: flex; flex-direction: column; gap: 12px; }
     .cc {
-      display: flex; gap: var(--space-lg);
-      padding: var(--space-lg); background: var(--cream);
-      border: 1px solid var(--border); border-radius: 10px;
-      transition: border-color 0.15s;
+      display: flex; gap: 20px; padding: 24px;
+      background: var(--bg-raised); border: 1px solid var(--border);
+      border-radius: var(--r-md); transition: border-color 0.15s;
     }
-    .cc:hover { border-color: var(--ink); }
+    .cc:hover { border-color: var(--accent); }
     .cc-icon {
-      width: 44px; height: 44px; border-radius: 8px;
-      background: var(--ink); color: var(--cream);
+      width: 44px; height: 44px; border-radius: var(--r-sm);
+      background: var(--accent-dim); color: var(--accent);
       display: grid; place-items: center; flex-shrink: 0;
     }
     .cc-icon svg { width: 18px; height: 18px; }
     .cc-label {
-      font-size: 11px; font-weight: 600; color: var(--ink-muted);
-      text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;
+      font-family: var(--sans); font-size: 11px; font-weight: 600;
+      color: var(--text-3); text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 2px;
     }
-    .cc-value { font-size: 15px; font-weight: 600; color: var(--ink); }
-    .cc-value a { color: inherit; text-decoration: none; }
-    .cc-value a:hover { color: var(--terracotta); }
+    .cc-val { font-size: 15px; font-weight: 600; color: var(--text); }
+    .cc-val a { transition: color 0.15s; }
+    .cc-val a:hover { color: var(--accent); }
 
-    .map-wrap {
-      border-radius: 10px; overflow: hidden;
+    .map-box {
+      border-radius: var(--r-md); overflow: hidden;
       border: 1px solid var(--border); min-height: 400px;
-      background: var(--paper-deep);
+      background: var(--bg-card);
     }
-    .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    .map-box iframe { width: 100%; height: 100%; border: none; display: block; }
 
     /* ===== FOOTER ===== */
     .footer {
       border-top: 1px solid var(--border);
-      padding: var(--space-2xl) var(--space-lg) var(--space-xl);
+      padding: 64px 0 32px;
     }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
+    .footer-grid {
       display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: var(--space-2xl);
+      gap: 48px; margin-bottom: 48px;
     }
     .foot-brand-name {
-      font-family: var(--font-display);
-      font-size: 20px; color: var(--ink); margin-bottom: var(--space-md);
+      font-family: var(--sans); font-size: 16px; font-weight: 700;
+      color: var(--text); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 8px;
     }
-    .foot-brand-name span { color: var(--terracotta); }
-    .foot-brand p {
-      font-size: 14px; color: var(--ink-soft); line-height: 1.7;
-      max-width: 280px;
+    .foot-brand-name .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
+    }
+    .footer-brand p {
+      font-size: 14px; color: var(--text-3); line-height: 1.7; max-width: 280px;
     }
     .foot-col h5 {
-      font-size: 11px; font-weight: 700; text-transform: uppercase;
-      letter-spacing: 1.2px; color: var(--ink-muted);
-      margin-bottom: var(--space-md);
+      font-family: var(--sans); font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--text-3); margin-bottom: 16px;
     }
     .foot-col ul { list-style: none; }
-    .foot-col li { margin-bottom: var(--space-sm); }
-    .foot-col a {
-      font-size: 14px; color: var(--ink-soft); text-decoration: none;
-      transition: color 0.15s;
-    }
-    .foot-col a:hover { color: var(--ink); }
+    .foot-col li { margin-bottom: 8px; }
+    .foot-col a { font-size: 14px; color: var(--text-3); transition: color 0.15s; }
+    .foot-col a:hover { color: var(--text); }
     .foot-bottom {
-      max-width: 1200px; margin: var(--space-xl) auto 0;
-      padding-top: var(--space-lg); border-top: 1px solid var(--border);
+      padding-top: 24px; border-top: 1px solid var(--border);
       display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: var(--space-md);
+      flex-wrap: wrap; gap: 12px;
     }
-    .foot-bottom p { font-size: 13px; color: var(--ink-muted); }
-    .foot-bottom a { color: var(--ink-muted); text-decoration: none; }
-    .foot-bottom a:hover { color: var(--ink); }
+    .foot-bottom p { font-size: 12px; color: var(--text-3); }
+    .foot-bottom a { color: var(--text-3); transition: color 0.15s; }
+    .foot-bottom a:hover { color: var(--text); }
 
     /* ===== FAB ===== */
     .fab {
-      position: fixed; bottom: var(--space-lg); right: var(--space-lg);
-      z-index: 90; width: 52px; height: 52px; border-radius: 50%;
-      background: var(--terracotta); color: var(--cream);
-      display: grid; place-items: center; text-decoration: none;
-      box-shadow: 0 4px 16px rgba(196,89,42,0.3);
+      position: fixed; bottom: 24px; right: 24px; z-index: 90;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--accent); color: var(--bg);
+      display: grid; place-items: center;
+      box-shadow: 0 4px 20px rgba(212,168,83,0.25);
       transition: transform 0.2s, box-shadow 0.2s;
     }
-    .fab:hover { transform: scale(1.06); box-shadow: 0 6px 24px rgba(196,89,42,0.4); }
+    .fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(212,168,83,0.35); }
     .fab svg { width: 22px; height: 22px; }
 
     /* ===== REVEAL ===== */
@@ -467,35 +441,37 @@
     .r.v { opacity: 1; transform: translateY(0); }
 
     /* ===== RESPONSIVE ===== */
-    @media (max-width: 900px) {
-      .hero { grid-template-columns: 1fr; gap: var(--space-xl); padding-top: calc(60px + var(--space-2xl)); }
-      .hero-text { max-width: 100%; }
-      .hero-visual { aspect-ratio: 16/10; }
+    @media (max-width: 960px) {
+      .hero { min-height: auto; padding: 120px 0 60px; }
+      .hero::after { display: none; }
+      .hero-stats { position: static; flex-direction: row; border-left: none; border-top: 1px solid var(--border); margin-top: 40px; }
+      .hero-stat { border-bottom: none; border-right: 1px solid var(--border); padding: 16px 24px; }
+      .hero-stat:last-child { border-right: none; }
       .svc-grid { grid-template-columns: 1fr; }
-      .about { grid-template-columns: 1fr; gap: var(--space-xl); }
-      .tips-grid { grid-template-columns: 1fr; }
-      .contact-layout { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; }
+      .about-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .about-cell:last-child { border-bottom: none; }
       .cta-inner { grid-template-columns: 1fr; text-align: center; }
-      .cta-inner h2 { max-width: 100%; }
-      .cta-btns { justify-content: center; }
-      .footer-inner { grid-template-columns: 1fr 1fr; }
+      .cta h2 { max-width: 100%; }
+      .tips-split { grid-template-columns: 1fr; gap: 32px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
       .nav-links { display: none; }
       .nav-links.open {
         display: flex; flex-direction: column;
-        position: absolute; top: 60px; left: 0; right: 0;
-        background: var(--cream); padding: var(--space-lg);
-        border-bottom: 1px solid var(--border); gap: var(--space-md);
+        position: absolute; top: 56px; left: 0; right: 0;
+        background: var(--bg); padding: 24px;
+        border-bottom: 1px solid var(--border); gap: 16px;
       }
       .nav-mob { display: block; }
     }
     @media (max-width: 600px) {
-      .footer-inner { grid-template-columns: 1fr; }
-      .about-stats { flex-wrap: wrap; }
-      .cta-btns { flex-direction: column; align-items: center; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .hero h1 { letter-spacing: -1px; }
       .hero-actions { flex-direction: column; align-items: flex-start; }
+      .btn-gold, .btn-ghost { width: 100%; justify-content: center; max-width: 300px; }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
@@ -503,16 +479,15 @@
 </head>
 <body>
 
-  <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav-row">
-      <a href="#" class="nav-brand">Plombier <span>Girondin</span></a>
+      <a href="#" class="nav-brand"><span class="dot"></span> Plombier Girondin</a>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#services" class="active">Services</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#zones">Zones</a></li>
         <li><a href="#contact">Contact</a></li>
         <li>
-          <a href="tel:0651113387" class="nav-btn">
+          <a href="tel:0651113387" class="nav-phone">
             <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             06 51 11 33 87
           </a>
@@ -526,56 +501,33 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-text">
-      <div class="hero-tag">Plombier Bordeaux &middot; 7J/7</div>
-      <h1>On répare ce qui <em>casse</em></h1>
-      <p class="hero-desc">Fuite, canalisation bouchée, chauffe-eau en panne. Un seul appel suffit. Plombier qualifié, intervention rapide partout en Gironde 33.</p>
+    <div class="wrap hero-inner">
+      <div class="hero-eyebrow">Plombier Bordeaux &middot; 7J/7 &middot; 24H/24</div>
+      <h1>Fuite ?<br>On <span class="gold">arrive</span>.</h1>
+      <p class="hero-sub">Un seul appel. Plombier qualifié, intervention rapide partout en Gironde 33. Devis gratuit, sans engagement.</p>
       <div class="hero-actions">
-        <a href="tel:0651113387" class="btn-primary">
+        <a href="tel:0651113387" class="btn-gold">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           Appeler maintenant
         </a>
         <a href="#contact" class="btn-ghost">
-          Demander un devis
+          Devis gratuit
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-    </div>
-    <div class="hero-visual">
-      <!-- Inline SVG illustration: wrench + pipe -->
-      <svg viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:70%;height:auto;">
-        <!-- Pipe background shape -->
-        <rect x="80" y="60" width="240" height="380" rx="20" fill="#ebe5dc" />
-        <!-- Vertical pipe -->
-        <rect x="170" y="100" width="60" height="300" rx="8" fill="#d4c5a9" />
-        <rect x="178" y="100" width="4" height="300" rx="2" fill="#c4b494" opacity="0.5" />
-        <!-- Horizontal pipe -->
-        <rect x="120" y="220" width="160" height="50" rx="8" fill="#d4c5a9" />
-        <rect x="120" y="228" width="160" height="4" rx="2" fill="#c4b494" opacity="0.5" />
-        <!-- Joint circle -->
-        <circle cx="200" cy="245" r="35" fill="#c4592a" />
-        <circle cx="200" cy="245" r="28" fill="#c4592a" stroke="#faf8f5" stroke-width="3" />
-        <!-- Wrench handle -->
-        <rect x="185" y="310" width="30" height="100" rx="6" fill="#1a1612" />
-        <!-- Wrench head -->
-        <path d="M170 310 L200 280 L230 310 Z" fill="#1a1612" />
-        <circle cx="200" cy="300" r="10" fill="#c4592a" />
-        <!-- Water drop -->
-        <path d="M200 140 Q210 160 210 170 Q210 182 200 182 Q190 182 190 170 Q190 160 200 140Z" fill="#2d5a3d" opacity="0.7" />
-        <!-- Small drip -->
-        <circle cx="200" cy="195" r="4" fill="#2d5a3d" opacity="0.5" />
-      </svg>
-      <div class="hero-badge-float">
-        <div class="hbf-left">
-          <div class="hbf-icon">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <div>
-            <div class="hbf-label">Disponibilité</div>
-            <div class="hbf-value">7J/7 · 24H/24</div>
-          </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num">7J/7</div>
+          <div class="hero-stat-label">Disponible</div>
         </div>
-        <div class="hbf-status" title="En ligne"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">24H</div>
+          <div class="hero-stat-label">Réactivité</div>
+        </div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">18+</div>
+          <div class="hero-stat-label">Villes</div>
+        </div>
       </div>
     </div>
   </section>
@@ -603,165 +555,138 @@
   </div>
 
   <!-- SERVICES -->
-  <section class="section" id="services">
-    <div class="section-inner">
-      <div class="section-label r">Prestations</div>
-      <h2 class="section-heading r">Ce qu'on fait<br>pour vous</h2>
+  <section class="sec" id="services">
+    <div class="wrap">
+      <div class="sec-label r">Prestations</div>
+      <h2 class="sec-title r">Ce qu'on fait<br>pour vous.</h2>
       <div class="svc-grid r">
-        <div class="svc-cell">
+        <div class="svc">
           <div class="svc-num">01</div>
           <h3>Réparation de fuites</h3>
           <p>Détection et réparation de fuites de robinet, tuyaux en cuivre et canalisations. Intervention rapide.</p>
-          <a href="#contact" class="svc-link">
-            Nous contacter
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="svc-cell">
+        <div class="svc">
           <div class="svc-num">02</div>
           <h3>Débouchage WC & canalisations</h3>
           <p>Débouchage professionnel de toilettes, égouts et canalisations. Matériel pro, résultat garanti.</p>
-          <a href="#contact" class="svc-link">
-            Nous contacter
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="svc-cell">
+        <div class="svc">
           <div class="svc-num">03</div>
           <h3>Entretien chauffe-eau</h3>
-          <p>Vidange, détartrage et entretien de tous types de chauffe-eau. Prolongez la durée de vie de votre appareil.</p>
-          <a href="#contact" class="svc-link">
-            Nous contacter
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <p>Vidange, détartrage et entretien de tous types de chauffe-eau. Prolongez la durée de vie.</p>
+          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="svc-cell">
+        <div class="svc">
           <div class="svc-num">04</div>
           <h3>Installation sanitaire</h3>
           <p>Lavabo, baignoire, douche, wc, évier. Mise aux normes et conseil personnalisé.</p>
-          <a href="#contact" class="svc-link">
-            Nous contacter
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="svc-cell">
+        <div class="svc">
           <div class="svc-num">05</div>
           <h3>Branchement appareils</h3>
           <p>Raccordement de lave-vaisselle, lave-linge et appareils sanitaires. Conforme et sécurisé.</p>
-          <a href="#contact" class="svc-link">
-            Nous contacter
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
-        <div class="svc-cell">
+        <div class="svc">
           <div class="svc-num">06</div>
           <h3>Urgence 24H/24</h3>
-          <p>Dépannage rapide disponible jour et nuit. Un seul appel pour résoudre votre problème.</p>
-          <a href="tel:0651113387" class="svc-link">
-            Appeler
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </a>
+          <p>Dépannage rapide jour et nuit. Un seul appel pour résoudre votre problème.</p>
+          <a href="tel:0651113387" class="svc-cta">Appeler <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section class="section" style="background: var(--cream);">
-    <div class="section-inner">
-      <div class="about">
-        <div class="about-text r">
-          Un plombier <span class="accent">sérieux</span>, c'est quelqu'un qui arrive à l'heure, qui explique ce qu'il va faire, et qui fait les choses <span class="accent">bien</span>.
-        </div>
-        <div class="about-meta r">
-          <p>Spécialiste des travaux de plomberie, nous intervenons pour tous vos besoins en installation, réparation et entretien. Que ce soit pour une fuite d'eau, un problème de canalisation bouchée ou l'installation d'une nouvelle salle de bain, nous garantissons un travail soigné et durable.</p>
-          <div class="about-stats">
-            <div>
-              <div class="about-stat-num">18+</div>
-              <div class="about-stat-label">Villes couvertes</div>
-            </div>
-            <div>
-              <div class="about-stat-num">100%</div>
-              <div class="about-stat-label">Devis gratuit</div>
-            </div>
-            <div>
-              <div class="about-stat-num">7J/7</div>
-              <div class="about-stat-label">Disponible</div>
-            </div>
-          </div>
-        </div>
-      </div>
+  <div class="about r">
+    <div class="about-cell">
+      <div class="about-cell-num">18+</div>
+      <div class="about-cell-title">Villes couvertes</div>
+      <p>Bordeaux, Mérignac, Pessac, Talence et toutes les communes de la Gironde 33.</p>
     </div>
-  </section>
+    <div class="about-cell">
+      <div class="about-cell-num">100%</div>
+      <div class="about-cell-title">Devis gratuit</div>
+      <p>Sans engagement. Transparence totale sur nos tarifs avant chaque intervention.</p>
+    </div>
+    <div class="about-cell">
+      <div class="about-cell-num">24H</div>
+      <div class="about-cell-title">Réactivité</div>
+      <p>Intervention rapide pour résoudre vos urgences plomberie dans les meilleurs délais.</p>
+    </div>
+  </div>
 
   <!-- CTA -->
-  <section class="cta-band">
-    <div class="cta-inner r">
-      <h2>Besoin d'un plombier <em>maintenant</em> ?</h2>
-      <div class="cta-btns">
-        <a href="tel:0651113387" class="btn-warm">
+  <section class="cta">
+    <div class="wrap cta-inner r">
+      <h2>Besoin d'un plombier <span class="gold">maintenant</span> ?</h2>
+      <div style="display:flex;gap:12px;">
+        <a href="tel:0651113387" class="btn-gold">
           <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           06 51 11 33 87
         </a>
-        <a href="#contact" class="btn-outline-w">Demander un devis</a>
+        <a href="#contact" class="btn-ghost">Demander un devis</a>
       </div>
     </div>
   </section>
 
   <!-- AREAS -->
-  <section class="section" id="zones">
-    <div class="section-inner">
-      <div class="section-label r">Zones d'intervention</div>
-      <h2 class="section-heading r">Partout en Gironde 33</h2>
-      <p class="section-sub r">Plombier à Bordeaux et dans les communes environnantes. Déplacement rapide.</p>
+  <section class="sec" id="zones">
+    <div class="wrap">
+      <div class="sec-label r">Zones d'intervention</div>
+      <h2 class="sec-title r">Partout en Gironde 33.</h2>
+      <p class="sec-desc r">Plombier à Bordeaux et dans les communes environnantes. Déplacement rapide.</p>
       <div class="area-grid r">
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Ambarès (33440)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Arcachon (33120)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bègles (33130)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Blanquefort (33290)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cenon (33150)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cestas (33610)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Eysines (33320)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Floirac (33270)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gradignan (33170)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gujan-Mestras (33470)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> La Teste-de-Buch (33260)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Le Bouscat (33110)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Libourne (33500)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Lormont (33310)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Mérignac (33700)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Pessac (33600)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Talence (33400)</a>
-        <a class="area-item" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Villenave-d'Ornon (33160)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Ambarès (33440)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Arcachon (33120)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bègles (33130)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Blanquefort (33290)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cenon (33150)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cestas (33610)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Eysines (33320)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Floirac (33270)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gradignan (33170)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gujan-Mestras (33470)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> La Teste-de-Buch (33260)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Le Bouscat (33110)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Libourne (33500)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Lormont (33310)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Mérignac (33700)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Pessac (33600)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Talence (33400)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Villenave-d'Ornon (33160)</a>
       </div>
       <div class="area-all r">Déplacement sur tout le département de la Gironde 33</div>
     </div>
   </section>
 
   <!-- ADVICE -->
-  <section class="section" style="background: var(--cream);" id="astuces">
-    <div class="section-inner">
-      <div class="section-label r">Conseils</div>
-      <h2 class="section-heading r">Choisir le bon<br>équipement sanitaire</h2>
-      <div class="tips-grid r">
-        <div class="tips-text">
-          L'aspect est un critère primordial, mais il ne doit pas faire oublier le côté technique. Un bon équipement, c'est un investissement durable.
+  <section class="sec" id="astuces" style="background: var(--bg-raised);">
+    <div class="wrap">
+      <div class="sec-label r">Conseils</div>
+      <h2 class="sec-title r">Choisir le bon<br>équipement sanitaire.</h2>
+      <div class="tips-split r">
+        <div class="tips-quote">
+          L'aspect est un critère primordial, mais il ne doit pas faire oublier le côté <span class="gold">technique</span>.
         </div>
         <div class="tips-list">
-          <div class="tip-row">
-            <div class="tip-num">01</div>
+          <div class="tip">
+            <div class="tip-n">01</div>
             <div class="tip-body"><strong>Privilégiez la qualité</strong> et les normes de sécurité. Le label NF est un gage de confiance.</div>
           </div>
-          <div class="tip-row">
-            <div class="tip-num">02</div>
+          <div class="tip">
+            <div class="tip-n">02</div>
             <div class="tip-body"><strong>Adaptez l'équipement</strong> à la surface disponible. Chaque salle de bain est unique.</div>
           </div>
-          <div class="tip-row">
-            <div class="tip-num">03</div>
+          <div class="tip">
+            <div class="tip-n">03</div>
             <div class="tip-body"><strong>Budgetez l'entretien</strong> annuel. Un appareil bien entretenu dure deux fois plus longtemps.</div>
           </div>
-          <div class="tip-row">
-            <div class="tip-num">04</div>
+          <div class="tip">
+            <div class="tip-n">04</div>
             <div class="tip-body"><strong>Demandez conseil</strong> à un professionnel. Un bon plombier vous oriente vers le meilleur choix.</div>
           </div>
         </div>
@@ -770,20 +695,20 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section" id="contact">
-    <div class="section-inner">
-      <div class="section-label r">Contact</div>
-      <h2 class="section-heading r">Demandez votre<br>devis gratuit</h2>
-      <p class="section-sub r">Sans engagement. Nous répondons rapidement.</p>
-      <div class="contact-layout" style="margin-top: var(--space-xl);">
-        <div class="contact-cards r">
+  <section class="sec" id="contact">
+    <div class="wrap">
+      <div class="sec-label r">Contact</div>
+      <h2 class="sec-title r">Demandez votre<br>devis gratuit.</h2>
+      <p class="sec-desc r">Sans engagement. Nous répondons rapidement.</p>
+      <div class="contact-grid r">
+        <div class="contact-cards">
           <div class="cc">
             <div class="cc-icon">
               <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             </div>
             <div>
               <div class="cc-label">Téléphone</div>
-              <div class="cc-value"><a href="tel:0651113387">06 51 11 33 87</a></div>
+              <div class="cc-val"><a href="tel:0651113387">06 51 11 33 87</a></div>
             </div>
           </div>
           <div class="cc">
@@ -792,7 +717,7 @@
             </div>
             <div>
               <div class="cc-label">Email</div>
-              <div class="cc-value"><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></div>
+              <div class="cc-val"><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></div>
             </div>
           </div>
           <div class="cc">
@@ -801,7 +726,7 @@
             </div>
             <div>
               <div class="cc-label">Adresse</div>
-              <div class="cc-value">153 rue Bouthier<br>33100 Bordeaux</div>
+              <div class="cc-val">153 rue Bouthier<br>33100 Bordeaux</div>
             </div>
           </div>
           <div class="cc">
@@ -810,11 +735,11 @@
             </div>
             <div>
               <div class="cc-label">Horaires</div>
-              <div class="cc-value">7 jours sur 7, 24h sur 24</div>
+              <div class="cc-val">7 jours sur 7, 24h sur 24</div>
             </div>
           </div>
         </div>
-        <div class="map-wrap r">
+        <div class="map-box">
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90679.36845892284!2d-0.6434774!3d44.841225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527e86be3e63d%3A0x40665148c111bc40!2sBordeaux!5e0!3m2!1sfr!2sfr!4v1694000000000!5m2!1sfr!2sfr" allowfullscreen loading="lazy"></iframe>
         </div>
       </div>
@@ -823,47 +748,48 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="foot-brand">
-        <div class="foot-brand-name">Plombier <span>Girondin</span></div>
-        <p>Plombier de confiance à Bordeaux. Installation, dépannage et entretien 7J/7, 24H/24. Devis gratuit et sans engagement.</p>
+    <div class="wrap">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="foot-brand-name"><span class="dot"></span> Plombier Girondin</div>
+          <p>Plombier de confiance à Bordeaux. Installation, dépannage et entretien 7J/7, 24H/24. Devis gratuit.</p>
+        </div>
+        <div class="foot-col">
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Réparation de fuites</a></li>
+            <li><a href="#services">Débouchage WC</a></li>
+            <li><a href="#services">Chauffe-eau</a></li>
+            <li><a href="#services">Installation sanitaire</a></li>
+            <li><a href="#services">Urgence 24H/24</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5>Zones</h5>
+          <ul>
+            <li><a href="#zones">Bordeaux</a></li>
+            <li><a href="#zones">Mérignac</a></li>
+            <li><a href="#zones">Pessac</a></li>
+            <li><a href="#zones">Talence</a></li>
+            <li><a href="#zones">Toute la Gironde</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="tel:0651113387">06 51 11 33 87</a></li>
+            <li><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></li>
+            <li><a href="#contact">Devis gratuit</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="foot-col">
-        <h5>Services</h5>
-        <ul>
-          <li><a href="#services">Réparation de fuites</a></li>
-          <li><a href="#services">Débouchage WC</a></li>
-          <li><a href="#services">Chauffe-eau</a></li>
-          <li><a href="#services">Installation sanitaire</a></li>
-          <li><a href="#services">Urgence 24H/24</a></li>
-        </ul>
+      <div class="foot-bottom">
+        <p>&copy; 2024 Plombier Girondin. Tous droits réservés.</p>
+        <p><a href="#">Mentions légales</a></p>
       </div>
-      <div class="foot-col">
-        <h5>Zones</h5>
-        <ul>
-          <li><a href="#zones">Bordeaux</a></li>
-          <li><a href="#zones">Mérignac</a></li>
-          <li><a href="#zones">Pessac</a></li>
-          <li><a href="#zones">Talence</a></li>
-          <li><a href="#zones">Toute la Gironde</a></li>
-        </ul>
-      </div>
-      <div class="foot-col">
-        <h5>Contact</h5>
-        <ul>
-          <li><a href="tel:0651113387">06 51 11 33 87</a></li>
-          <li><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></li>
-          <li><a href="#contact">Devis gratuit</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="foot-bottom">
-      <p>&copy; 2024 Plombier Girondin. Tous droits réservés.</p>
-      <p><a href="#">Mentions légales</a></p>
     </div>
   </footer>
 
-  <!-- FAB -->
   <a href="tel:0651113387" class="fab" aria-label="Appeler">
     <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>
@@ -871,12 +797,10 @@
   <script>
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10));
-
     const toggle = document.getElementById('navToggle');
     const links = document.getElementById('navLinks');
     toggle.addEventListener('click', () => links.classList.toggle('open'));
     links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
