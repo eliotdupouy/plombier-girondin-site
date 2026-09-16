@@ -7,804 +7,363 @@
   <meta name="description" content="Plombier à Bordeaux et Gironde 33. Dépannage et installation 7J/7, 24H/24. Devis gratuit.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'DM Sans',-apple-system,sans-serif;color:#1a1a2e;background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    :root{--blue:#1565c0;--blue-dk:#0d47a1;--blue-lt:#e3f2fd;--green:#2e7d32;--green-lt:#e8f5e9;--orange:#e65100;--orange-lt:#fff3e0;--g50:#fafafa;--g100:#f5f5f5;--g200:#eee;--g500:#9e9e9e;--g700:#616161;--g900:#212121}
+    .wrap{max-width:1120px;margin:0 auto;padding:0 20px}
 
-    :root {
-      --sans: 'Space Grotesk', system-ui, sans-serif;
-      --body: 'DM Sans', -apple-system, sans-serif;
+    .topbar{background:var(--blue-dk);color:#fff;padding:8px 0;font-size:13px}
+    .topbar-inner{max-width:1120px;margin:0 auto;padding:0 20px;display:flex;justify-content:space-between;align-items:center}
+    .topbar a{color:#fff}
+    .topbar-left{display:flex;gap:24px}
+    .topbar span{opacity:.7}
 
-      --bg: #0c0c0c;
-      --bg-raised: #161616;
-      --bg-card: #1c1c1c;
-      --bg-hover: #222222;
-      --surface: #2a2a2a;
+    .nav{background:#fff;border-bottom:1px solid var(--g200);position:sticky;top:0;z-index:100}
+    .nav-inner{max-width:1120px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:64px}
+    .nav-brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:700;color:var(--blue-dk)}
+    .nav-brand-icon{width:40px;height:40px;background:var(--blue);border-radius:8px;display:grid;place-items:center;color:#fff;font-size:16px;font-weight:800}
+    .nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+    .nav-links a{font-size:15px;font-weight:500;color:var(--g700);transition:color .15s}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:var(--blue);color:#fff;font-size:14px;font-weight:600;border-radius:8px;transition:background .15s}
+    .nav-cta:hover{background:var(--blue-dk)}
+    .nav-cta svg{width:16px;height:16px}
+    .nav-mob{display:none;background:none;border:none;cursor:pointer;padding:8px}
+    .nav-mob span{display:block;width:22px;height:2px;background:var(--g900);margin:5px 0;border-radius:1px}
 
-      --text: #f0ece4;
-      --text-2: #a8a29e;
-      --text-3: #78716c;
+    .hero{background:var(--blue-lt);padding:64px 0 80px}
+    .hero-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--green-lt);color:var(--green);font-size:13px;font-weight:600;border-radius:100px;margin-bottom:20px}
+    .hero-tag .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+    .hero h1{font-size:clamp(36px,4.5vw,52px);font-weight:700;line-height:1.1;letter-spacing:-.5px;color:var(--g900);margin-bottom:16px}
+    .hero-desc{font-size:17px;color:var(--g700);line-height:1.7;margin-bottom:32px;max-width:480px}
+    .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+    .btn-call{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;background:var(--blue);color:#fff;font-size:16px;font-weight:600;border-radius:10px;transition:background .15s;box-shadow:0 2px 8px rgba(21,101,192,.3)}
+    .btn-call:hover{background:var(--blue-dk)}
+    .btn-call svg{width:20px;height:20px}
+    .btn-quote{display:inline-flex;align-items:center;gap:8px;padding:16px 28px;background:#fff;color:var(--blue);font-size:16px;font-weight:600;border-radius:10px;border:2px solid var(--blue);transition:all .15s}
+    .btn-quote:hover{background:var(--blue);color:#fff}
+    .btn-quote svg{width:18px;height:18px}
 
-      --accent: #d4a853;
-      --accent-dim: rgba(212,168,83,0.12);
-      --accent-hover: #e0b96a;
+    .hero-card{background:#fff;border-radius:16px;box-shadow:0 4px 24px rgba(0,0,0,.06);padding:32px}
+    .hc-head{display:flex;align-items:center;gap:16px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--g200)}
+    .hc-avatar{width:56px;height:56px;border-radius:50%;background:var(--blue-lt);color:var(--blue);display:grid;place-items:center;font-size:24px;font-weight:700;flex-shrink:0}
+    .hc-name{font-size:16px;font-weight:700;color:var(--g900)}
+    .hc-role{font-size:13px;color:var(--g500)}
+    .hc-rows{display:flex;flex-direction:column;gap:16px}
+    .hc-row{display:flex;align-items:center;gap:14px}
+    .hc-icon{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+    .hc-icon svg{width:18px;height:18px}
+    .hc-icon--b{background:var(--blue-lt);color:var(--blue)}
+    .hc-icon--g{background:var(--green-lt);color:var(--green)}
+    .hc-icon--o{background:var(--orange-lt);color:var(--orange)}
+    .hc-icon--gr{background:var(--g100);color:var(--g700)}
+    .hc-label{font-size:12px;color:var(--g500)}
+    .hc-val{font-size:14px;font-weight:600;color:var(--g900)}
 
-      --danger: #e74c3c;
-      --ok: #2ecc71;
+    .trust{background:#fff;border-bottom:1px solid var(--g200);padding:20px 0}
+    .trust-inner{display:flex;justify-content:center;gap:48px;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--g700)}
+    .trust-item svg{width:20px;height:20px;color:var(--blue);flex-shrink:0}
 
-      --border: #2a2a2a;
-      --border-light: #333;
+    .sec{padding:80px 0}
+    .sec--gray{background:var(--g50)}
+    .sec-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--blue);margin-bottom:8px}
+    .sec-title{font-size:clamp(26px,3.5vw,38px);font-weight:700;color:var(--g900);margin-bottom:12px;letter-spacing:-.3px}
+    .sec-desc{font-size:16px;color:var(--g700);max-width:520px;line-height:1.7;margin-bottom:40px}
 
-      --r-sm: 6px;
-      --r-md: 10px;
-      --r-lg: 16px;
-    }
+    .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .svc{background:#fff;border:1px solid var(--g200);border-radius:12px;padding:28px;transition:border-color .15s,box-shadow .15s}
+    .svc:hover{border-color:var(--blue);box-shadow:0 2px 12px rgba(21,101,192,.08)}
+    .svc-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;margin-bottom:16px}
+    .svc-icon svg{width:24px;height:24px}
+    .svc-icon--1{background:var(--blue-lt);color:var(--blue)}
+    .svc-icon--2{background:var(--orange-lt);color:var(--orange)}
+    .svc-icon--3{background:var(--green-lt);color:var(--green)}
+    .svc-icon--4{background:#f3e5f5;color:#7b1fa2}
+    .svc-icon--5{background:#e0f2f1;color:#00695c}
+    .svc-icon--6{background:#fce4ec;color:#c62828}
+    .svc h3{font-size:17px;font-weight:700;color:var(--g900);margin-bottom:8px}
+    .svc p{font-size:14px;color:var(--g700);line-height:1.65}
+    .svc-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:600;color:var(--blue);transition:gap .15s}
+    .svc-link:hover{gap:10px}
+    .svc-link svg{width:16px;height:16px}
 
-    html { scroll-behavior: smooth; }
+    .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .review{background:#fff;border:1px solid var(--g200);border-radius:12px;padding:28px}
+    .review-stars{color:#f9a825;font-size:16px;margin-bottom:12px;letter-spacing:2px}
+    .review-text{font-size:15px;color:var(--g700);line-height:1.65;margin-bottom:16px;font-style:italic}
+    .review-author{font-size:14px;font-weight:600;color:var(--g900)}
+    .review-from{font-size:13px;color:var(--g500)}
 
-    body {
-      font-family: var(--body);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
+    .cta-band{background:var(--blue);padding:64px 0}
+    .cta-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px}
+    .cta-text h2{font-size:clamp(24px,3vw,34px);font-weight:700;color:#fff;margin-bottom:4px}
+    .cta-text p{font-size:16px;color:rgba(255,255,255,.8)}
+    .cta-btns{display:flex;gap:12px}
+    .btn-white{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;background:#fff;color:var(--blue);font-size:15px;font-weight:600;border-radius:10px;transition:background .15s}
+    .btn-white:hover{background:var(--g100)}
+    .btn-white svg{width:18px;height:18px}
+    .btn-outline-w{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:transparent;color:#fff;font-size:15px;font-weight:600;border-radius:10px;border:2px solid rgba(255,255,255,.4);transition:border-color .15s}
+    .btn-outline-w:hover{border-color:#fff}
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
+    .area-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+    .area{display:flex;align-items:center;gap:10px;padding:12px 16px;background:#fff;border:1px solid var(--g200);border-radius:8px;font-size:14px;font-weight:500;color:var(--g700);transition:all .15s}
+    .area:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-lt)}
+    .area svg{width:14px;height:14px;color:var(--blue);flex-shrink:0}
+    .area-note{margin-top:24px;padding:16px 24px;background:var(--blue-lt);border-radius:10px;font-size:15px;font-weight:600;color:var(--blue);text-align:center}
 
-    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .advice-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+    .advice-quote{font-size:clamp(22px,2.5vw,30px);font-weight:700;color:var(--g900);line-height:1.35}
+    .advice-quote .hl{color:var(--blue)}
+    .tips{display:flex;flex-direction:column}
+    .tip{padding:16px 0;border-bottom:1px solid var(--g200);display:flex;gap:14px}
+    .tip:first-child{border-top:1px solid var(--g200)}
+    .tip-n{font-size:13px;font-weight:700;color:var(--blue);flex-shrink:0;padding-top:1px}
+    .tip-body{font-size:14px;color:var(--g700);line-height:1.65}
+    .tip-body strong{color:var(--g900);font-weight:600}
 
-    /* ===== NAV ===== */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(12,12,12,0.85);
-      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: box-shadow 0.3s;
-    }
-    .nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.4); }
-    .nav-row {
-      max-width: 1200px; margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 56px;
-    }
-    .nav-brand {
-      font-family: var(--sans); font-size: 16px; font-weight: 700;
-      letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px;
-    }
-    .nav-brand .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent);
-    }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-    .nav-links a {
-      font-size: 13px; font-weight: 500; color: var(--text-3);
-      transition: color 0.15s; letter-spacing: 0.2px;
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-phone {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 8px 16px; background: var(--accent);
-      color: var(--bg); font-family: var(--sans);
-      font-size: 13px; font-weight: 600; border-radius: var(--r-sm);
-      transition: background 0.15s;
-    }
-    .nav-phone:hover { background: var(--accent-hover); }
-    .nav-phone svg { width: 14px; height: 14px; }
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+    .contact-cards{display:flex;flex-direction:column;gap:12px}
+    .cc{display:flex;gap:16px;padding:20px;background:var(--g50);border:1px solid var(--g200);border-radius:10px;transition:border-color .15s}
+    .cc:hover{border-color:var(--blue)}
+    .cc-icon{width:44px;height:44px;border-radius:10px;background:var(--blue-lt);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+    .cc-icon svg{width:18px;height:18px}
+    .cc-label{font-size:12px;font-weight:600;color:var(--g500);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+    .cc-val{font-size:15px;font-weight:600;color:var(--g900)}
+    .cc-val a{transition:color .15s}
+    .cc-val a:hover{color:var(--blue)}
+    .map-box{border-radius:12px;overflow:hidden;border:1px solid var(--g200);min-height:380px}
+    .map-box iframe{width:100%;height:100%;border:none;display:block}
 
-    .nav-mob { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-    .nav-mob span { display: block; width: 18px; height: 1.5px; background: var(--text); margin: 4px 0; }
+    .footer{background:var(--g900);color:var(--g500);padding:56px 0 24px}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+    .footer-brand-name{font-size:18px;font-weight:700;color:#fff;margin-bottom:12px}
+    .footer-brand p{font-size:14px;line-height:1.7;max-width:280px}
+    .foot-col h5{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#bbb;margin-bottom:14px}
+    .foot-col ul{list-style:none}
+    .foot-col li{margin-bottom:8px}
+    .foot-col a{font-size:14px;transition:color .15s}
+    .foot-col a:hover{color:#fff}
+    .foot-bottom{padding-top:20px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px}
 
-    /* ===== HERO ===== */
-    .hero {
-      min-height: 100vh; display: flex; align-items: flex-end;
-      padding-bottom: 80px; position: relative;
-      background: var(--bg);
-    }
-    /* Subtle grain texture */
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-    /* Accent line */
-    .hero::after {
-      content: ''; position: absolute; top: 0; left: 24px;
-      width: 1px; height: 100vh;
-      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
-      opacity: 0.2;
-    }
-    .hero-inner { position: relative; z-index: 2; }
-    .hero-eyebrow {
-      font-family: var(--sans); font-size: 12px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 3px;
-      color: var(--accent); margin-bottom: 24px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .hero-eyebrow::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-      max-width: 120px;
-    }
-    .hero h1 {
-      font-family: var(--sans); font-size: clamp(48px, 8vw, 96px);
-      font-weight: 700; line-height: 0.95; letter-spacing: -2px;
-      color: var(--text); margin-bottom: 32px;
-      max-width: 800px;
-    }
-    .hero h1 .gold { color: var(--accent); }
-    .hero-sub {
-      font-size: 17px; color: var(--text-2);
-      max-width: 480px; line-height: 1.7; margin-bottom: 40px;
-    }
-    .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    .fab{position:fixed;bottom:24px;right:24px;z-index:90;width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;box-shadow:0 4px 16px rgba(21,101,192,.35);transition:transform .2s}
+    .fab:hover{transform:scale(1.08)}
+    .fab svg{width:24px;height:24px}
 
-    .btn-gold {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 28px; background: var(--accent); color: var(--bg);
-      font-family: var(--sans); font-size: 14px; font-weight: 600;
-      border-radius: var(--r-sm); border: none; cursor: pointer;
-      transition: all 0.15s;
-    }
-    .btn-gold:hover { background: var(--accent-hover); transform: translateY(-1px); }
-    .btn-gold svg { width: 16px; height: 16px; }
+    .r{opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease}
+    .r.v{opacity:1;transform:translateY(0)}
 
-    .btn-ghost {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 24px; background: transparent; color: var(--text);
-      font-family: var(--sans); font-size: 14px; font-weight: 500;
-      border: 1px solid var(--border-light); border-radius: var(--r-sm);
-      cursor: pointer; transition: all 0.15s;
+    @media(max-width:900px){
+      .topbar{display:none}
+      .hero-inner{grid-template-columns:1fr}
+      .hero-card{order:-1}
+      .svc-grid,.reviews-grid{grid-template-columns:1fr}
+      .advice-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .cta-inner{text-align:center}
+      .nav-links{display:none}
+      .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#fff;padding:20px;border-bottom:1px solid var(--g200);box-shadow:0 4px 12px rgba(0,0,0,.06);gap:12px}
+      .nav-mob{display:block}
     }
-    .btn-ghost:hover { border-color: var(--text-3); }
-    .btn-ghost svg { width: 16px; height: 16px; }
-
-    /* Hero right side: stats strip */
-    .hero-stats {
-      position: absolute; right: 0; bottom: 80px;
-      display: flex; flex-direction: column; gap: 0;
-      border-left: 1px solid var(--border);
+    @media(max-width:600px){
+      .footer-grid{grid-template-columns:1fr}
+      .hero-btns{flex-direction:column}
+      .btn-call,.btn-quote{width:100%;justify-content:center}
     }
-    .hero-stat {
-      padding: 20px 32px; border-bottom: 1px solid var(--border);
-    }
-    .hero-stat-num {
-      font-family: var(--sans); font-size: 28px; font-weight: 700;
-      color: var(--accent); letter-spacing: -0.5px; line-height: 1;
-    }
-    .hero-stat-label {
-      font-size: 12px; color: var(--text-3); margin-top: 4px;
-      text-transform: uppercase; letter-spacing: 0.5px;
-    }
-
-    /* ===== MARQUEE ===== */
-    .marquee {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 0; overflow: hidden;
-    }
-    .marquee-track {
-      display: flex; gap: 48px;
-      animation: scroll 30s linear infinite;
-      white-space: nowrap;
-    }
-    .marquee-item {
-      font-family: var(--sans); font-size: 13px; font-weight: 500;
-      color: var(--text-3); text-transform: uppercase; letter-spacing: 1px;
-      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
-    }
-    .marquee-item::before {
-      content: ''; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--accent);
-    }
-    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-    /* ===== SECTION ===== */
-    .sec { padding: 120px 0; }
-    .sec-label {
-      font-family: var(--sans); font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 3px;
-      color: var(--accent); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 12px;
-    }
-    .sec-label::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-      max-width: 80px;
-    }
-    .sec-title {
-      font-family: var(--sans); font-size: clamp(28px, 4vw, 44px);
-      font-weight: 700; line-height: 1.1; letter-spacing: -1px;
-      color: var(--text); margin-bottom: 16px;
-    }
-    .sec-desc {
-      font-size: 16px; color: var(--text-2); max-width: 480px;
-      line-height: 1.7;
-    }
-
-    /* ===== SERVICES ===== */
-    .svc-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1px; background: var(--border);
-      border: 1px solid var(--border); border-radius: var(--r-md);
-      overflow: hidden; margin-top: 48px;
-    }
-    .svc {
-      background: var(--bg-raised); padding: 36px 32px;
-      display: flex; flex-direction: column; gap: 16px;
-      transition: background 0.15s; position: relative;
-    }
-    .svc:hover { background: var(--bg-card); }
-    .svc::before {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 100%; height: 2px; background: var(--accent);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-    .svc:hover::before { transform: scaleX(1); }
-    .svc-num {
-      font-family: var(--sans); font-size: 11px; font-weight: 700;
-      color: var(--text-3); font-variant-numeric: tabular-nums;
-    }
-    .svc h3 {
-      font-family: var(--sans); font-size: 18px; font-weight: 600;
-      color: var(--text); line-height: 1.3; letter-spacing: -0.2px;
-    }
-    .svc p {
-      font-size: 14px; color: var(--text-3); line-height: 1.65;
-    }
-    .svc-cta {
-      margin-top: auto; padding-top: 16px;
-      border-top: 1px solid var(--border);
-      font-family: var(--sans); font-size: 12px; font-weight: 600;
-      color: var(--accent); display: inline-flex; align-items: center;
-      gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;
-      transition: gap 0.2s;
-    }
-    .svc-cta:hover { gap: 14px; }
-    .svc-cta svg { width: 14px; height: 14px; }
-
-    /* ===== ABOUT STRIP ===== */
-    .about {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      display: grid; grid-template-columns: 1fr 1fr 1fr;
-    }
-    .about-cell {
-      padding: 48px 40px;
-      border-right: 1px solid var(--border);
-    }
-    .about-cell:last-child { border-right: none; }
-    .about-cell-num {
-      font-family: var(--sans); font-size: 48px; font-weight: 700;
-      color: var(--accent); letter-spacing: -1px; line-height: 1;
-      margin-bottom: 8px;
-    }
-    .about-cell-title {
-      font-family: var(--sans); font-size: 15px; font-weight: 600;
-      color: var(--text); margin-bottom: 8px;
-    }
-    .about-cell p {
-      font-size: 14px; color: var(--text-3); line-height: 1.65;
-    }
-
-    /* ===== CTA ===== */
-    .cta {
-      background: var(--bg-raised);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 100px 0;
-    }
-    .cta-inner {
-      display: grid; grid-template-columns: 1fr auto; gap: 48px;
-      align-items: center;
-    }
-    .cta h2 {
-      font-family: var(--sans); font-size: clamp(28px, 4vw, 48px);
-      font-weight: 700; line-height: 1.1; letter-spacing: -1px;
-      max-width: 520px;
-    }
-    .cta h2 .gold { color: var(--accent); }
-
-    /* ===== AREAS ===== */
-    .area-grid {
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 8px; margin-top: 48px;
-    }
-    .area {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 20px; background: var(--bg-raised);
-      border: 1px solid var(--border); border-radius: var(--r-sm);
-      font-size: 14px; font-weight: 500; color: var(--text-2);
-      transition: all 0.15s;
-    }
-    .area:hover { border-color: var(--accent); color: var(--text); }
-    .area svg { width: 12px; height: 12px; color: var(--accent); flex-shrink: 0; }
-    .area-all {
-      margin-top: 24px; padding: 20px;
-      background: var(--accent-dim); border: 1px solid rgba(212,168,83,0.2);
-      border-radius: var(--r-md);
-      font-family: var(--sans); font-size: 14px; font-weight: 600;
-      color: var(--accent); text-align: center;
-    }
-
-    /* ===== TIPS ===== */
-    .tips-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 64px; margin-top: 48px; align-items: start;
-    }
-    .tips-quote {
-      font-family: var(--sans); font-size: clamp(22px, 2.5vw, 32px);
-      font-weight: 600; line-height: 1.35; color: var(--text);
-      letter-spacing: -0.3px;
-    }
-    .tips-quote .gold { color: var(--accent); }
-    .tips-list { display: flex; flex-direction: column; }
-    .tip {
-      padding: 20px 0; border-bottom: 1px solid var(--border);
-      display: flex; gap: 16px;
-    }
-    .tip:first-child { border-top: 1px solid var(--border); }
-    .tip-n {
-      font-family: var(--sans); font-size: 12px; font-weight: 700;
-      color: var(--accent); flex-shrink: 0; padding-top: 2px;
-    }
-    .tip-body { font-size: 14px; color: var(--text-2); line-height: 1.65; }
-    .tip-body strong { color: var(--text); font-weight: 600; }
-
-    /* ===== CONTACT ===== */
-    .contact-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 48px; margin-top: 48px;
-    }
-    .contact-cards { display: flex; flex-direction: column; gap: 12px; }
-    .cc {
-      display: flex; gap: 20px; padding: 24px;
-      background: var(--bg-raised); border: 1px solid var(--border);
-      border-radius: var(--r-md); transition: border-color 0.15s;
-    }
-    .cc:hover { border-color: var(--accent); }
-    .cc-icon {
-      width: 44px; height: 44px; border-radius: var(--r-sm);
-      background: var(--accent-dim); color: var(--accent);
-      display: grid; place-items: center; flex-shrink: 0;
-    }
-    .cc-icon svg { width: 18px; height: 18px; }
-    .cc-label {
-      font-family: var(--sans); font-size: 11px; font-weight: 600;
-      color: var(--text-3); text-transform: uppercase; letter-spacing: 0.5px;
-      margin-bottom: 2px;
-    }
-    .cc-val { font-size: 15px; font-weight: 600; color: var(--text); }
-    .cc-val a { transition: color 0.15s; }
-    .cc-val a:hover { color: var(--accent); }
-
-    .map-box {
-      border-radius: var(--r-md); overflow: hidden;
-      border: 1px solid var(--border); min-height: 400px;
-      background: var(--bg-card);
-    }
-    .map-box iframe { width: 100%; height: 100%; border: none; display: block; }
-
-    /* ===== FOOTER ===== */
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 64px 0 32px;
-    }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px; margin-bottom: 48px;
-    }
-    .foot-brand-name {
-      font-family: var(--sans); font-size: 16px; font-weight: 700;
-      color: var(--text); margin-bottom: 12px;
-      display: flex; align-items: center; gap: 8px;
-    }
-    .foot-brand-name .dot {
-      width: 6px; height: 6px; border-radius: 50%; background: var(--accent);
-    }
-    .footer-brand p {
-      font-size: 14px; color: var(--text-3); line-height: 1.7; max-width: 280px;
-    }
-    .foot-col h5 {
-      font-family: var(--sans); font-size: 11px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1.2px;
-      color: var(--text-3); margin-bottom: 16px;
-    }
-    .foot-col ul { list-style: none; }
-    .foot-col li { margin-bottom: 8px; }
-    .foot-col a { font-size: 14px; color: var(--text-3); transition: color 0.15s; }
-    .foot-col a:hover { color: var(--text); }
-    .foot-bottom {
-      padding-top: 24px; border-top: 1px solid var(--border);
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 12px;
-    }
-    .foot-bottom p { font-size: 12px; color: var(--text-3); }
-    .foot-bottom a { color: var(--text-3); transition: color 0.15s; }
-    .foot-bottom a:hover { color: var(--text); }
-
-    /* ===== FAB ===== */
-    .fab {
-      position: fixed; bottom: 24px; right: 24px; z-index: 90;
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--accent); color: var(--bg);
-      display: grid; place-items: center;
-      box-shadow: 0 4px 20px rgba(212,168,83,0.25);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .fab:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(212,168,83,0.35); }
-    .fab svg { width: 22px; height: 22px; }
-
-    /* ===== REVEAL ===== */
-    .r { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .r.v { opacity: 1; transform: translateY(0); }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 960px) {
-      .hero { min-height: auto; padding: 120px 0 60px; }
-      .hero::after { display: none; }
-      .hero-stats { position: static; flex-direction: row; border-left: none; border-top: 1px solid var(--border); margin-top: 40px; }
-      .hero-stat { border-bottom: none; border-right: 1px solid var(--border); padding: 16px 24px; }
-      .hero-stat:last-child { border-right: none; }
-      .svc-grid { grid-template-columns: 1fr; }
-      .about { grid-template-columns: 1fr; }
-      .about-cell { border-right: none; border-bottom: 1px solid var(--border); }
-      .about-cell:last-child { border-bottom: none; }
-      .cta-inner { grid-template-columns: 1fr; text-align: center; }
-      .cta h2 { max-width: 100%; }
-      .tips-split { grid-template-columns: 1fr; gap: 32px; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex; flex-direction: column;
-        position: absolute; top: 56px; left: 0; right: 0;
-        background: var(--bg); padding: 24px;
-        border-bottom: 1px solid var(--border); gap: 16px;
-      }
-      .nav-mob { display: block; }
-    }
-    @media (max-width: 600px) {
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero h1 { letter-spacing: -1px; }
-      .hero-actions { flex-direction: column; align-items: flex-start; }
-      .btn-gold, .btn-ghost { width: 100%; justify-content: center; max-width: 300px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-    }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
   </style>
 </head>
 <body>
 
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-left">
+        <a href="tel:0651113387">06 51 11 33 87</a>
+        <span>info@plombierbordeaux.eu</span>
+      </div>
+      <span>7J/7 · 24H/24</span>
+    </div>
+  </div>
+
   <nav class="nav" id="nav">
-    <div class="nav-row">
-      <a href="#" class="nav-brand"><span class="dot"></span> Plombier Girondin</a>
+    <div class="nav-inner">
+      <a href="#" class="nav-brand">
+        <div class="nav-brand-icon">PG</div>
+        Plombier Girondin
+      </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#services">Services</a></li>
+        <li><a href="#avis">Avis</a></li>
         <li><a href="#zones">Zones</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li>
-          <a href="tel:0651113387" class="nav-phone">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            06 51 11 33 87
-          </a>
-        </li>
+        <li><a href="tel:0651113387" class="nav-cta"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 51 11 33 87</a></li>
       </ul>
-      <button class="nav-mob" id="navToggle" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="nav-mob" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- HERO -->
   <section class="hero">
     <div class="wrap hero-inner">
-      <div class="hero-eyebrow">Plombier Bordeaux &middot; 7J/7 &middot; 24H/24</div>
-      <h1>Fuite ?<br>On <span class="gold">arrive</span>.</h1>
-      <p class="hero-sub">Un seul appel. Plombier qualifié, intervention rapide partout en Gironde 33. Devis gratuit, sans engagement.</p>
-      <div class="hero-actions">
-        <a href="tel:0651113387" class="btn-gold">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Appeler maintenant
-        </a>
-        <a href="#contact" class="btn-ghost">
-          Devis gratuit
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
+      <div>
+        <div class="hero-tag"><span class="dot"></span> Disponible 7J/7 — 24H/24</div>
+        <h1>Plombier à Bordeaux.<br>On arrive.</h1>
+        <p class="hero-desc">Dépannage et installation professionnels. Fuite, canalisation, chauffe-eau, sanitaire — intervention rapide partout en Gironde 33.</p>
+        <div class="hero-btns">
+          <a href="tel:0651113387" class="btn-call"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Appeler maintenant</a>
+          <a href="#contact" class="btn-quote">Devis gratuit <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num">7J/7</div>
-          <div class="hero-stat-label">Disponible</div>
+      <div class="hero-card">
+        <div class="hc-head">
+          <div class="hc-avatar">PG</div>
+          <div><div class="hc-name">Plombier Girondin</div><div class="hc-role">Artisan plombier à Bordeaux</div></div>
         </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">24H</div>
-          <div class="hero-stat-label">Réactivité</div>
-        </div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">18+</div>
-          <div class="hero-stat-label">Villes</div>
+        <div class="hc-rows">
+          <div class="hc-row"><div class="hc-icon hc-icon--b"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="hc-label">Téléphone</div><div class="hc-val">06 51 11 33 87</div></div></div>
+          <div class="hc-row"><div class="hc-icon hc-icon--g"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="hc-label">Disponibilité</div><div class="hc-val">7J/7 · 24H/24</div></div></div>
+          <div class="hc-row"><div class="hc-icon hc-icon--o"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="hc-label">Adresse</div><div class="hc-val">153 rue Bouthier, 33100</div></div></div>
+          <div class="hc-row"><div class="hc-icon hc-icon--gr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div><div><div class="hc-label">Avis clients</div><div class="hc-val">★★★★★ Satisfait</div></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item">Dépannage urgent</span>
-      <span class="marquee-item">Fuite de robinet</span>
-      <span class="marquee-item">Débouchage canalisation</span>
-      <span class="marquee-item">Chauffe-eau</span>
-      <span class="marquee-item">Installation sanitaire</span>
-      <span class="marquee-item">Raccordement appareils</span>
-      <span class="marquee-item">Devis gratuit</span>
-      <span class="marquee-item">Bordeaux & Gironde</span>
-      <span class="marquee-item">Dépannage urgent</span>
-      <span class="marquee-item">Fuite de robinet</span>
-      <span class="marquee-item">Débouchage canalisation</span>
-      <span class="marquee-item">Chauffe-eau</span>
-      <span class="marquee-item">Installation sanitaire</span>
-      <span class="marquee-item">Raccordement appareils</span>
-      <span class="marquee-item">Devis gratuit</span>
-      <span class="marquee-item">Bordeaux & Gironde</span>
+  <div class="trust">
+    <div class="trust-inner">
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Intervention rapide</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Artisan qualifié</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Devis 100% gratuit</div>
+      <div class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Satisfaction garantie</div>
     </div>
   </div>
 
-  <!-- SERVICES -->
   <section class="sec" id="services">
     <div class="wrap">
-      <div class="sec-label r">Prestations</div>
-      <h2 class="sec-title r">Ce qu'on fait<br>pour vous.</h2>
+      <div class="sec-label r">Nos services</div>
+      <h2 class="sec-title r">Ce qu'on fait pour vous.</h2>
+      <p class="sec-desc r">Spécialiste des travaux de plomberie, nous intervenons pour tous vos besoins en installation, réparation et entretien.</p>
       <div class="svc-grid r">
-        <div class="svc">
-          <div class="svc-num">01</div>
-          <h3>Réparation de fuites</h3>
-          <p>Détection et réparation de fuites de robinet, tuyaux en cuivre et canalisations. Intervention rapide.</p>
-          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
-        <div class="svc">
-          <div class="svc-num">02</div>
-          <h3>Débouchage WC & canalisations</h3>
-          <p>Débouchage professionnel de toilettes, égouts et canalisations. Matériel pro, résultat garanti.</p>
-          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
-        <div class="svc">
-          <div class="svc-num">03</div>
-          <h3>Entretien chauffe-eau</h3>
-          <p>Vidange, détartrage et entretien de tous types de chauffe-eau. Prolongez la durée de vie.</p>
-          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
-        <div class="svc">
-          <div class="svc-num">04</div>
-          <h3>Installation sanitaire</h3>
-          <p>Lavabo, baignoire, douche, wc, évier. Mise aux normes et conseil personnalisé.</p>
-          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
-        <div class="svc">
-          <div class="svc-num">05</div>
-          <h3>Branchement appareils</h3>
-          <p>Raccordement de lave-vaisselle, lave-linge et appareils sanitaires. Conforme et sécurisé.</p>
-          <a href="#contact" class="svc-cta">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
-        <div class="svc">
-          <div class="svc-num">06</div>
-          <h3>Urgence 24H/24</h3>
-          <p>Dépannage rapide jour et nuit. Un seul appel pour résoudre votre problème.</p>
-          <a href="tel:0651113387" class="svc-cta">Appeler <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        </div>
+        <div class="svc"><div class="svc-icon svc-icon--1"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><h3>Réparation de fuites</h3><p>Détection et réparation de fuites de robinet, tuyaux en cuivre et canalisations.</p><a href="#contact" class="svc-link">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        <div class="svc"><div class="svc-icon svc-icon--2"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"/><path d="M12 12v9"/><path d="m8 17 4 4 4-4"/></svg></div><h3>Débouchage WC & canalisations</h3><p>Débouchage professionnel de toilettes, égouts et canalisations bouchées.</p><a href="#contact" class="svc-link">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        <div class="svc"><div class="svc-icon svc-icon--3"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div><h3>Entretien chauffe-eau</h3><p>Vidange, détartrage et entretien de tous types de chauffe-eau.</p><a href="#contact" class="svc-link">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        <div class="svc"><div class="svc-icon svc-icon--4"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><h3>Installation sanitaire</h3><p>Lavabo, baignoire, douche, wc, évier. Mise aux normes et conseil.</p><a href="#contact" class="svc-link">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        <div class="svc"><div class="svc-icon svc-icon--5"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><h3>Branchement appareils</h3><p>Raccordement lave-vaisselle, lave-linge et appareils sanitaires.</p><a href="#contact" class="svc-link">Nous contacter <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+        <div class="svc"><div class="svc-icon svc-icon--6"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><h3>Urgence 24H/24</h3><p>Dépannage rapide jour et nuit. Un seul appel suffit.</p><a href="tel:0651113387" class="svc-link">Appeler <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
       </div>
     </div>
   </section>
 
-  <!-- ABOUT -->
-  <div class="about r">
-    <div class="about-cell">
-      <div class="about-cell-num">18+</div>
-      <div class="about-cell-title">Villes couvertes</div>
-      <p>Bordeaux, Mérignac, Pessac, Talence et toutes les communes de la Gironde 33.</p>
+  <section class="sec sec--gray" id="avis">
+    <div class="wrap">
+      <div class="sec-label r">Avis clients</div>
+      <h2 class="sec-title r">Ils nous font confiance.</h2>
+      <div class="reviews-grid r">
+        <div class="review"><div class="review-stars">★★★★★</div><p class="review-text">"Fuite de robinet réparée en 30 minutes. Tarif honnête, travail propre. Je recommande."</p><div class="review-author">Marie D.</div><div class="review-from">Bordeaux</div></div>
+        <div class="review"><div class="review-stars">★★★★★</div><p class="review-text">"Canalisation bouchée un dimanche soir. Appelé à 20h, réparé à 21h. Impec."</p><div class="review-author">Thomas L.</div><div class="review-from">Mérignac</div></div>
+        <div class="review"><div class="review-stars">★★★★★</div><p class="review-text">"Remplacement chauffe-eau. Devis clair, pose rapide, conseils utiles."</p><div class="review-author">Sophie P.</div><div class="review-from">Pessac</div></div>
+      </div>
     </div>
-    <div class="about-cell">
-      <div class="about-cell-num">100%</div>
-      <div class="about-cell-title">Devis gratuit</div>
-      <p>Sans engagement. Transparence totale sur nos tarifs avant chaque intervention.</p>
-    </div>
-    <div class="about-cell">
-      <div class="about-cell-num">24H</div>
-      <div class="about-cell-title">Réactivité</div>
-      <p>Intervention rapide pour résoudre vos urgences plomberie dans les meilleurs délais.</p>
-    </div>
-  </div>
+  </section>
 
-  <!-- CTA -->
-  <section class="cta">
+  <section class="cta-band">
     <div class="wrap cta-inner r">
-      <h2>Besoin d'un plombier <span class="gold">maintenant</span> ?</h2>
-      <div style="display:flex;gap:12px;">
-        <a href="tel:0651113387" class="btn-gold">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          06 51 11 33 87
-        </a>
-        <a href="#contact" class="btn-ghost">Demander un devis</a>
+      <div class="cta-text"><h2>Besoin d'un plombier maintenant ?</h2><p>Devis gratuit. Sans engagement.</p></div>
+      <div class="cta-btns">
+        <a href="tel:0651113387" class="btn-white"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 51 11 33 87</a>
+        <a href="#contact" class="btn-outline-w">Demander un devis</a>
       </div>
     </div>
   </section>
 
-  <!-- AREAS -->
   <section class="sec" id="zones">
     <div class="wrap">
       <div class="sec-label r">Zones d'intervention</div>
       <h2 class="sec-title r">Partout en Gironde 33.</h2>
-      <p class="sec-desc r">Plombier à Bordeaux et dans les communes environnantes. Déplacement rapide.</p>
+      <p class="sec-desc r">Plombier à Bordeaux et dans les communes environnantes.</p>
       <div class="area-grid r">
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Ambarès (33440)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Arcachon (33120)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bègles (33130)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Blanquefort (33290)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cenon (33150)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Cestas (33610)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Eysines (33320)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Floirac (33270)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gradignan (33170)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gujan-Mestras (33470)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> La Teste-de-Buch (33260)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Le Bouscat (33110)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Libourne (33500)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Lormont (33310)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Mérignac (33700)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Pessac (33600)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Talence (33400)</a>
-        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Villenave-d'Ornon (33160)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Ambarès (33440)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Arcachon (33120)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Bègles (33130)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Blanquefort (33290)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cenon (33150)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cestas (33610)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Eysines (33320)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Floirac (33270)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Gradignan (33170)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Gujan-Mestras (33470)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>La Teste-de-Buch (33260)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Le Bouscat (33110)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Libourne (33500)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Lormont (33310)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Mérignac (33700)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Pessac (33600)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Talence (33400)</a>
+        <a class="area" href="#contact"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Villenave-d'Ornon (33160)</a>
       </div>
-      <div class="area-all r">Déplacement sur tout le département de la Gironde 33</div>
+      <div class="area-note r">Déplacement sur tout le département de la Gironde 33</div>
     </div>
   </section>
 
-  <!-- ADVICE -->
-  <section class="sec" id="astuces" style="background: var(--bg-raised);">
+  <section class="sec sec--gray" id="astuces">
     <div class="wrap">
       <div class="sec-label r">Conseils</div>
-      <h2 class="sec-title r">Choisir le bon<br>équipement sanitaire.</h2>
-      <div class="tips-split r">
-        <div class="tips-quote">
-          L'aspect est un critère primordial, mais il ne doit pas faire oublier le côté <span class="gold">technique</span>.
-        </div>
-        <div class="tips-list">
-          <div class="tip">
-            <div class="tip-n">01</div>
-            <div class="tip-body"><strong>Privilégiez la qualité</strong> et les normes de sécurité. Le label NF est un gage de confiance.</div>
-          </div>
-          <div class="tip">
-            <div class="tip-n">02</div>
-            <div class="tip-body"><strong>Adaptez l'équipement</strong> à la surface disponible. Chaque salle de bain est unique.</div>
-          </div>
-          <div class="tip">
-            <div class="tip-n">03</div>
-            <div class="tip-body"><strong>Budgetez l'entretien</strong> annuel. Un appareil bien entretenu dure deux fois plus longtemps.</div>
-          </div>
-          <div class="tip">
-            <div class="tip-n">04</div>
-            <div class="tip-body"><strong>Demandez conseil</strong> à un professionnel. Un bon plombier vous oriente vers le meilleur choix.</div>
-          </div>
+      <h2 class="sec-title r">Choisir le bon équipement sanitaire.</h2>
+      <div class="advice-grid r">
+        <div class="advice-quote">L'aspect est un critère primordial, mais il ne doit pas faire oublier le côté <span class="hl">technique</span>.</div>
+        <div class="tips">
+          <div class="tip"><div class="tip-n">01</div><div class="tip-body"><strong>Privilégiez la qualité</strong> et les normes de sécurité. Le label NF est un gage de confiance.</div></div>
+          <div class="tip"><div class="tip-n">02</div><div class="tip-body"><strong>Adaptez l'équipement</strong> à la surface disponible. Chaque salle de bain est unique.</div></div>
+          <div class="tip"><div class="tip-n">03</div><div class="tip-body"><strong>Budgetez l'entretien</strong> annuel. Un appareil bien entretenu dure deux fois plus longtemps.</div></div>
+          <div class="tip"><div class="tip-n">04</div><div class="tip-body"><strong>Demandez conseil</strong> à un professionnel. Un bon plombier vous oriente vers le meilleur choix.</div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section class="sec" id="contact">
     <div class="wrap">
       <div class="sec-label r">Contact</div>
-      <h2 class="sec-title r">Demandez votre<br>devis gratuit.</h2>
+      <h2 class="sec-title r">Demandez votre devis gratuit.</h2>
       <p class="sec-desc r">Sans engagement. Nous répondons rapidement.</p>
       <div class="contact-grid r">
         <div class="contact-cards">
-          <div class="cc">
-            <div class="cc-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <div class="cc-label">Téléphone</div>
-              <div class="cc-val"><a href="tel:0651113387">06 51 11 33 87</a></div>
-            </div>
-          </div>
-          <div class="cc">
-            <div class="cc-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <div class="cc-label">Email</div>
-              <div class="cc-val"><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></div>
-            </div>
-          </div>
-          <div class="cc">
-            <div class="cc-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="cc-label">Adresse</div>
-              <div class="cc-val">153 rue Bouthier<br>33100 Bordeaux</div>
-            </div>
-          </div>
-          <div class="cc">
-            <div class="cc-icon">
-              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <div>
-              <div class="cc-label">Horaires</div>
-              <div class="cc-val">7 jours sur 7, 24h sur 24</div>
-            </div>
-          </div>
+          <div class="cc"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><div class="cc-label">Téléphone</div><div class="cc-val"><a href="tel:0651113387">06 51 11 33 87</a></div></div></div>
+          <div class="cc"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="cc-label">Email</div><div class="cc-val"><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></div></div></div>
+          <div class="cc"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><div class="cc-label">Adresse</div><div class="cc-val">153 rue Bouthier<br>33100 Bordeaux</div></div></div>
+          <div class="cc"><div class="cc-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="cc-label">Horaires</div><div class="cc-val">7 jours sur 7, 24h sur 24</div></div></div>
         </div>
-        <div class="map-box">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90679.36845892284!2d-0.6434774!3d44.841225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527e86be3e63d%3A0x40665148c111bc40!2sBordeaux!5e0!3m2!1sfr!2sfr!4v1694000000000!5m2!1sfr!2sfr" allowfullscreen loading="lazy"></iframe>
-        </div>
+        <div class="map-box"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d90679.36845892284!2d-0.6434774!3d44.841225!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5527e86be3e63d%3A0x40665148c111bc40!2sBordeaux!5e0!3m2!1sfr!2sfr!4v1694000000000!5m2!1sfr!2sfr" allowfullscreen loading="lazy"></iframe></div>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap">
       <div class="footer-grid">
-        <div class="footer-brand">
-          <div class="foot-brand-name"><span class="dot"></span> Plombier Girondin</div>
-          <p>Plombier de confiance à Bordeaux. Installation, dépannage et entretien 7J/7, 24H/24. Devis gratuit.</p>
-        </div>
-        <div class="foot-col">
-          <h5>Services</h5>
-          <ul>
-            <li><a href="#services">Réparation de fuites</a></li>
-            <li><a href="#services">Débouchage WC</a></li>
-            <li><a href="#services">Chauffe-eau</a></li>
-            <li><a href="#services">Installation sanitaire</a></li>
-            <li><a href="#services">Urgence 24H/24</a></li>
-          </ul>
-        </div>
-        <div class="foot-col">
-          <h5>Zones</h5>
-          <ul>
-            <li><a href="#zones">Bordeaux</a></li>
-            <li><a href="#zones">Mérignac</a></li>
-            <li><a href="#zones">Pessac</a></li>
-            <li><a href="#zones">Talence</a></li>
-            <li><a href="#zones">Toute la Gironde</a></li>
-          </ul>
-        </div>
-        <div class="foot-col">
-          <h5>Contact</h5>
-          <ul>
-            <li><a href="tel:0651113387">06 51 11 33 87</a></li>
-            <li><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></li>
-            <li><a href="#contact">Devis gratuit</a></li>
-          </ul>
-        </div>
+        <div class="footer-brand"><div class="footer-brand-name">Plombier Girondin</div><p>Plombier de confiance à Bordeaux. Installation, dépannage et entretien 7J/7, 24H/24. Devis gratuit.</p></div>
+        <div class="foot-col"><h5>Services</h5><ul><li><a href="#services">Réparation de fuites</a></li><li><a href="#services">Débouchage WC</a></li><li><a href="#services">Chauffe-eau</a></li><li><a href="#services">Installation sanitaire</a></li><li><a href="#services">Urgence 24H/24</a></li></ul></div>
+        <div class="foot-col"><h5>Zones</h5><ul><li><a href="#zones">Bordeaux</a></li><li><a href="#zones">Mérignac</a></li><li><a href="#zones">Pessac</a></li><li><a href="#zones">Talence</a></li><li><a href="#zones">Toute la Gironde</a></li></ul></div>
+        <div class="foot-col"><h5>Contact</h5><ul><li><a href="tel:0651113387">06 51 11 33 87</a></li><li><a href="mailto:info@plombierbordeaux.eu">info@plombierbordeaux.eu</a></li><li><a href="#contact">Devis gratuit</a></li></ul></div>
       </div>
-      <div class="foot-bottom">
-        <p>&copy; 2024 Plombier Girondin. Tous droits réservés.</p>
-        <p><a href="#">Mentions légales</a></p>
-      </div>
+      <div class="foot-bottom"><p>&copy; 2024 Plombier Girondin. Tous droits réservés.</p><p><a href="#">Mentions légales</a></p></div>
     </div>
   </footer>
 
-  <a href="tel:0651113387" class="fab" aria-label="Appeler">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-  </a>
+  <a href="tel:0651113387" class="fab" aria-label="Appeler"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
 
   <script>
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10));
-    const toggle = document.getElementById('navToggle');
-    const links = document.getElementById('navLinks');
-    toggle.addEventListener('click', () => links.classList.toggle('open'));
-    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.r').forEach(el => obs.observe(el));
+    const nav=document.getElementById('nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+    const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
+    toggle.addEventListener('click',()=>links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.r').forEach(el=>obs.observe(el));
   </script>
 </body>
 </html>
